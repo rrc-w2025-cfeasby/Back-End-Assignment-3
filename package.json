@@ -6,6 +6,7 @@
     "start": "ts-node src/server.ts",
     "build": "tsc",
     "test": "jest",
+    "firestore:test": "ts-node src/firestoreTest.ts",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
   },
