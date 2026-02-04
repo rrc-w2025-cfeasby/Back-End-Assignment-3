@@ -1,5 +1,19 @@
 import Joi from "joi";
 
+/**
+ * Joi Schema for Creating an Event
+ * Validates the structure and constraints of the event creation request body.
+ * 
+ * Fields:
+ * - name: string, required, min length 3
+ * - date: ISO date string, required, must be in the future
+ * - capacity: integer, required, min value 5
+ * - registrationCount: integer, optional, min value 0, max value equal to capacity, default 0
+ * - status: string, optional, one of ["active", "cancelled", "completed"], default "active"
+ * - category: string, optional, one of ["conference", "workshop", "meetup", "seminar", "general"], default "general"
+ * 
+ * @returns Joi.ObjectSchema
+ */
 export const createEventSchema = Joi.object({
     name: Joi.string()
         .min(3)
