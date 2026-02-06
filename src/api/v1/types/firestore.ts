@@ -7,6 +7,6 @@ export interface FirestoreDataTypes {
     booleanValue?: boolean;
     nullValue?: null;
     dateValue?: Date;
-    objectValue?: Record<string, any>;
-    arrayValue?: Array<any>;
+    objectValue?: Record<string, unknown>;
+    arrayValue?: Array<unknown>;
 };

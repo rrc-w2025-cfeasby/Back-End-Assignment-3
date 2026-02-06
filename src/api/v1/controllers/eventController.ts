@@ -93,7 +93,13 @@ export async function deleteEvent(req: Request<idParam>, res: Response, next: Ne
 /**
  * Export the controller object containing all controller functions
  */
-export const eventController = {
+export const eventController: {
+  createEvent: typeof createEvent;
+  getAllEvents: typeof getAllEvents;
+  getEventById: typeof getEventById;
+  updateEvent: typeof updateEvent;
+  deleteEvent: typeof deleteEvent;
+} = {
   createEvent,
   getAllEvents,
   getEventById,

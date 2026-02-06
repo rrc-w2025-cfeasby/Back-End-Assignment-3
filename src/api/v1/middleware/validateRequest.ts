@@ -12,7 +12,7 @@ import Joi from 'joi';
  * @returns Express middleware function
  */
 export function validateRequest(schema: { body ?: Joi.ObjectSchema }) {
-    return (req: Request, res: Response, next: NextFunction) => {
+    return (req: Request, res: Response, next: NextFunction): void => {
         if(!schema.body) {
             return next();
         }
@@ -23,9 +23,10 @@ export function validateRequest(schema: { body ?: Joi.ObjectSchema }) {
         });
 
         if(error){
-            return res.status(400).json({
+            res.status(400).json({
                 errors: error.details.map(detail => detail.message)
             });
+            return;
         }
 
         req.body = value;

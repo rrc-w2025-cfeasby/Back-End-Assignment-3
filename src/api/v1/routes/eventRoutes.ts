@@ -9,7 +9,7 @@ import {
     deleteEvent
 } from '../controllers/eventController';
 
-const router = Router();
+const router: Router = Router();
 
 // POST /api/v1/events - Create an event
 router.post(

@@ -9,7 +9,7 @@ describe("Event Validation Schema", () => {
     // Test case for Missing Required Field name
     test("should fail validation when required field name is missing", () => {
         // Arrange
-        const data = {};
+        const data: any = {};
 
         // Act
         const { error } = createEventSchema.validate(data);
@@ -22,7 +22,7 @@ describe("Event Validation Schema", () => {
     // Test for date being in the past
     test("should fail when date is in the past", () => {
         // Arrange
-        const data = {
+        const data: any = {
             name: "Past Event",
             date: "2020-01-01T00:00:00.000Z",
             capacity: 100
@@ -39,7 +39,7 @@ describe("Event Validation Schema", () => {
     // Test case for capacity below minimum
     test("should fail when capacity is below minimum", () => {
         // Arrange
-        const data = {
+        const data: any = {
             name: "Small Event",
             date: "2027-01-01T00:00:00.000Z",
             capacity: 4

@@ -14,7 +14,7 @@ import Joi from "joi";
  * 
  * @returns Joi.ObjectSchema
  */
-export const createEventSchema = Joi.object({
+export const createEventSchema: Joi.ObjectSchema = Joi.object({
     name: Joi.string()
         .min(3)
         .required()

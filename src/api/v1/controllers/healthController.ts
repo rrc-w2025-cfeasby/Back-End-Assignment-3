@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { HTTP_STATUS } from "../../../constants/httpConstants";
 
-const startTime = Date.now();
+const startTime: number = Date.now();
 
 /**
  * Get the health status of the application
@@ -9,8 +9,8 @@ const startTime = Date.now();
  * @param res - Express Response object
  * @returns - JSON object with health status
  */
-export const getHealth = (req: Request, res: Response) => {
-  const uptime = (Date.now() - startTime) / 1000;
+export const getHealth = (req: Request, res: Response): Response | void => {
+  const uptime: number = (Date.now() - startTime) / 1000;
 
   return res.status(HTTP_STATUS.OK).json({
     status: "OK",

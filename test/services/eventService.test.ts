@@ -30,7 +30,7 @@ describe('Event Service Tests', () => {
         };
 
         // Act
-        const result = await createEventService(data);
+        const result: Event = await createEventService(data);
 
         // Assert
         expect(result.id).toBeDefined();
@@ -42,7 +42,7 @@ describe('Event Service Tests', () => {
     // Test should get all events
     test("should get all events", async () => {
         // Arrange
-        const mockDocs = [
+        const mockDocs: any[] = [
             { data: () => ({ id: "1", name: "Event 1" }) },
             { data: () => ({ id: "2", name: "Event 2" }) }
         ];
@@ -51,7 +51,7 @@ describe('Event Service Tests', () => {
             .mockResolvedValue({ docs: mockDocs } as any);
 
         // Act
-        const result = await getAllEventsService();
+        const result: Event[] = await getAllEventsService();
 
         // Assert
         expect(result.length).toBe(2);
@@ -68,7 +68,7 @@ describe('Event Service Tests', () => {
             .mockResolvedValue(mockDoc as any);
 
         // Act
-        const result = await getEventByIdService("123");
+        const result: Event | null = await getEventByIdService("123");
 
         // Assert
         expect(result).toEqual(mockEvent);
@@ -77,7 +77,7 @@ describe('Event Service Tests', () => {
     // Test should update event when found by id
     test("should update event when found by id", async () => {
         // Arrange
-        const existingEvent = {
+        const existingEvent: Event = {
             id: "123",
             name: "Old Name",
             date: "2027-01-01T00:00:00.000Z",
@@ -89,7 +89,7 @@ describe('Event Service Tests', () => {
             updatedAt: "2027-01-01T00:00:00.000Z"
         };
 
-        const mockDoc = { data: () => existingEvent };
+        const mockDoc: { data: () => Event } = { data: () => existingEvent };
 
         jest.spyOn(firestoreRepository, 'getDocumentById')
             .mockResolvedValue(mockDoc as any);
@@ -98,7 +98,7 @@ describe('Event Service Tests', () => {
             .mockResolvedValue(undefined);
 
         // Act
-        const result = await updateEventService("123", { name: "New Name" });
+        const result: Event = await updateEventService("123", { name: "New Name" });
 
         // Assert
         expect(result.id).toBe("123");
@@ -109,7 +109,7 @@ describe('Event Service Tests', () => {
     // Test should delete event when found by id
     test("should delete event when found by id", async () => {
         // Arrange
-        const existingEvent = {
+        const existingEvent: Event = {
             id: "123",
             name: "Test Event",
             date: "2027-01-01T00:00:00.000Z",
@@ -121,7 +121,7 @@ describe('Event Service Tests', () => {
             updatedAt: "2027-01-01T00:00:00.000Z"
         };
 
-        const mockDoc = { data: () => existingEvent };
+        const mockDoc: { data: () => Event } = { data: () => existingEvent };
 
         jest.spyOn(firestoreRepository, 'getDocumentById')
             .mockResolvedValue(mockDoc as any);
@@ -130,7 +130,7 @@ describe('Event Service Tests', () => {
             .mockResolvedValue(undefined);
 
         // Act
-        const result = await deleteEventService("123");
+        const result: { id: string } = await deleteEventService("123");
 
         // Assert
         expect(result).toEqual({ id: "123" });
