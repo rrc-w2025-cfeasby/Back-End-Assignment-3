@@ -1,3 +1,6 @@
+/**
+ * Firestore Data Types Interface
+ */
 export interface FirestoreDataTypes {
     stringValue?: string;
     numberValue?: number;

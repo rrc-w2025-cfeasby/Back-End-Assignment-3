@@ -10,7 +10,7 @@ app.use("/api/v1", healthRoutes);
 
 // Define a route
 app.get("/", (req, res) => {
-    res.send("Hello, World!");
+    res.send("Hello, Sergei, welcome to Assignment 3!");
 });
 
 export default app;

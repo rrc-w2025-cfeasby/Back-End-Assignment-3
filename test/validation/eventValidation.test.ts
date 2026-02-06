@@ -1,5 +1,10 @@
 import { createEventSchema } from "../../src/api/v1/validation/eventSchemas";
 
+/**
+ * Event Validation Schema Tests
+ *
+ * Tests the Joi validation schema for event creation.
+ */
 describe("Event Validation Schema", () => {
     // Test case for Missing Required Field name
     test("should fail validation when required field name is missing", () => {

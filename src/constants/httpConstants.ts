@@ -1,3 +1,8 @@
+/**
+ * HTTP Status Codes Constants
+ * 
+ * Defines commonly used HTTP status codes for consistent usage across the application.
+ */
 export const HTTP_STATUS = {
     OK: 200,
     CREATED: 201,

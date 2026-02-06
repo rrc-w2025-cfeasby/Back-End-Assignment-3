@@ -1,6 +1,9 @@
 import { db } from "../../../../config/firebaseConfig";
 import { FirestoreDataTypes } from "../types/firestore";
 
+/**
+ * Field-Value Pair Interface
+ */
 interface FieldValuePair {
     fieldName: string;
     fieldValue: FirestoreDataTypes;
@@ -200,6 +203,11 @@ export const deleteDocumentsByFieldValues = async (
     }
 };
 
+/**
+ * Firestore Repository
+ * 
+ * Exposes Firestore database operations for use in the application.
+ */
 export const firestoreRepository = {
     runTransaction,
     createDocument,

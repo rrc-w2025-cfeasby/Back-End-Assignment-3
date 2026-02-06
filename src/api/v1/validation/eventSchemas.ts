@@ -72,6 +72,11 @@ export const createEventSchema = Joi.object({
         }),
 });
 
+/**
+ * Event Schemas Collection
+ * 
+ * Groups all event-related Joi schemas for easy access.
+ */
 export const eventSchemas = {
     create: {
         body: createEventSchema,

@@ -3,6 +3,12 @@ import { HTTP_STATUS } from "../../../constants/httpConstants";
 
 const startTime = Date.now();
 
+/**
+ * Get the health status of the application
+ * @param req - Express Request object
+ * @param res - Express Response object
+ * @returns - JSON object with health status
+ */
 export const getHealth = (req: Request, res: Response) => {
   const uptime = (Date.now() - startTime) / 1000;
 

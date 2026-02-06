@@ -8,6 +8,11 @@ import {
 import { firestoreRepository } from "../../src/api/v1/repositories/firestoreRepository";
 import { Event } from "../../src/api/v1/models/eventModel";
 
+/**
+ * Event Service Tests
+ *
+ * Tests the functionality of the event service layer.
+ */
 describe('Event Service Tests', () => {
     // Test should create event
     test("should create event", async () => {
