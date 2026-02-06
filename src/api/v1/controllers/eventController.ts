@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { eventService } from "../services/eventService";
 import { successResponse } from "../models/responseModel";
+import { Event } from "../models/eventModel";
 
 /**
  * Interface for request params containing event Id
@@ -16,9 +17,9 @@ interface idParam {
  * @param res - Express Response object to send response
  * @param next - Express NextFunction for error handling
  */
-export async function createEvent(req: Request, res: Response, next: NextFunction) {
+export async function createEvent(req: Request, res: Response, next: NextFunction): Promise<void> {
   try{
-    const event = await eventService.createEventService(req.body);
+    const event: Event = await eventService.createEventService(req.body);
     res.status(201).json(successResponse(event, "Event created successfully"));
   }catch(error){
     next(error);
@@ -32,9 +33,9 @@ export async function createEvent(req: Request, res: Response, next: NextFunctio
  * @param res - Express Response object to send response
  * @param next - Express NextFunction for error handling
  */
-export async function getAllEvents(req: Request, res: Response, next: NextFunction) {
+export async function getAllEvents(req: Request, res: Response, next: NextFunction): Promise<void> {
   try{
-    const events = await eventService.getAllEventsService();
+    const events: Event[] = await eventService.getAllEventsService();
     res.status(200).json(successResponse(events, "Events retrieved"));
   }catch(error){
     next(error);
@@ -48,9 +49,9 @@ export async function getAllEvents(req: Request, res: Response, next: NextFuncti
  * @param res - Express Response object to send response
  * @param next - Express NextFunction for error handling 
  */
-export async function getEventById(req: Request<idParam>, res: Response, next: NextFunction) {
+export async function getEventById(req: Request<idParam>, res: Response, next: NextFunction): Promise<void> {
   try{
-    const event = await eventService.getEventByIdService(req.params.id);
+    const event: Event | null = await eventService.getEventByIdService(req.params.id);
     res.status(200).json(successResponse(event, "Event retrieved"));
   }catch(error){
     next(error);
@@ -64,9 +65,9 @@ export async function getEventById(req: Request<idParam>, res: Response, next: N
  * @param res - Express Response object to send response
  * @param next - Express NextFunction for error handling 
  */
-export async function updateEvent(req: Request<idParam>, res: Response, next: NextFunction) {
+export async function updateEvent(req: Request<idParam>, res: Response, next: NextFunction): Promise<void> {
   try{
-    const updated = await eventService.updateEventService(req.params.id, req.body);
+    const updated: Event = await eventService.updateEventService(req.params.id, req.body);
     res.status(200).json(successResponse(updated, "Event updated successfully"));
   }catch(error){
     next(error);
@@ -80,9 +81,9 @@ export async function updateEvent(req: Request<idParam>, res: Response, next: Ne
  * @param res - Express Response object to send response
  * @param next - Express NextFunction for error handling
  */
-export async function deleteEvent(req: Request<idParam>, res: Response, next: NextFunction) {
+export async function deleteEvent(req: Request<idParam>, res: Response, next: NextFunction): Promise<void> {
   try{
-    const result = await eventService.deleteEventService(req.params.id);
+    const result: {id: string} = await eventService.deleteEventService(req.params.id);
     res.status(200).json(successResponse(result, "Event deleted successfully"));
   }catch(error){
     next(error);

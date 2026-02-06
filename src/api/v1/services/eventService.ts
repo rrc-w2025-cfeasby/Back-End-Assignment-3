@@ -8,8 +8,8 @@ import { firestoreRepository } from '../repositories/firestoreRepository';
  * @returns Created Event
  */
 export async function createEventService(data: Omit<Event, "id" | "createdAt" | "updatedAt">): Promise<Event> {
-    const event_id = randomUUID();
-    const timestamp = new Date().toISOString();
+    const event_id: string = randomUUID();
+    const timestamp: string = new Date().toISOString();
 
     const event: Event = {
         id: event_id,
@@ -28,7 +28,7 @@ export async function createEventService(data: Omit<Event, "id" | "createdAt" | 
  * @returns events - Array of Events
  */
 export async function getAllEventsService(): Promise<Event[]> {
-    const snapshot = await firestoreRepository.getDocuments('events');
+    const snapshot: FirebaseFirestore.QuerySnapshot = await firestoreRepository.getDocuments('events');
 
     const events: Event[] = snapshot.docs.map((doc) => {
         return doc.data() as Event        
@@ -43,7 +43,7 @@ export async function getAllEventsService(): Promise<Event[]> {
  * @returns Event | null
  */
 export async function getEventByIdService(id: string): Promise<Event | null> {
-    const doc = await firestoreRepository.getDocumentById('events', id);
+    const doc: FirebaseFirestore.DocumentSnapshot | null = await firestoreRepository.getDocumentById('events', id);
 
     if(!doc){
         throw new Error(`Event with id ${id} not found`);
@@ -59,13 +59,13 @@ export async function getEventByIdService(id: string): Promise<Event | null> {
  * @returns Event - Updated event
  */
 export async function updateEventService(id: string, data: Partial<Event>): Promise<Event> {
-    const existingDoc = await firestoreRepository.getDocumentById('events', id);
+    const existingDoc: FirebaseFirestore.DocumentSnapshot | null = await firestoreRepository.getDocumentById('events', id);
 
     if(!existingDoc){
         throw new Error(`Event with id ${id} not found`);
     };
 
-    const existing = existingDoc.data() as Event;
+    const existing: Event = existingDoc.data() as Event;
 
     const updatedEvent: Event = {
         ...existing,
@@ -84,7 +84,7 @@ export async function updateEventService(id: string, data: Partial<Event>): Prom
  * @returns Object containing deleted event id
  */
 export async function deleteEventService(id: string): Promise<{id: string}> {
-    const existingDoc = await firestoreRepository.getDocumentById('events', id);
+    const existingDoc: FirebaseFirestore.DocumentSnapshot | null = await firestoreRepository.getDocumentById('events', id);
 
     if(!existingDoc){
         throw new Error(`Event with id ${id} not found`);
