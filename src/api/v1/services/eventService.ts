@@ -96,7 +96,13 @@ export async function deleteEventService(id: string): Promise<{id: string}> {
 };
 
 // Export the service object
-export const eventService = {
+export const eventService: {
+    createEventService: typeof createEventService;
+    getAllEventsService: typeof getAllEventsService;
+    getEventByIdService: typeof getEventByIdService;
+    updateEventService: typeof updateEventService;
+    deleteEventService: typeof deleteEventService;
+} = {
     createEventService,
     getAllEventsService,
     getEventByIdService,

@@ -3,7 +3,14 @@
  * 
  * Defines commonly used HTTP status codes for consistent usage across the application.
  */
-export const HTTP_STATUS = {
+export const HTTP_STATUS: {
+    OK: number;
+    CREATED: number;
+    NO_CONTENT: number;
+    BAD_REQUEST: number;
+    NOT_FOUND: number;
+    INTERNAL_SERVER_ERROR: number;
+} = {
     OK: 200,
     CREATED: 201,
     NO_CONTENT: 204,

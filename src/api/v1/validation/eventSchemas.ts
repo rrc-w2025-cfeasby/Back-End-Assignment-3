@@ -77,7 +77,9 @@ export const createEventSchema: Joi.ObjectSchema = Joi.object({
  * 
  * Groups all event-related Joi schemas for easy access.
  */
-export const eventSchemas = {
+export const eventSchemas: { 
+    create: { body: Joi.ObjectSchema } 
+} = {
     create: {
         body: createEventSchema,
     },
